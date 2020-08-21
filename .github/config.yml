@@ -1,6 +1,7 @@
 changelog:
   # Body format of changelog.
   # Available values:
+  #   context: Context object passed into action as 'context' parameter.
   #   releases: Array of release objects. (Read about release object: https://docs.github.com/en/rest/reference/repos#list-releases.)
   #   releasesFormatted: Formatted releases as text.
   body: |
@@ -15,7 +16,8 @@ changelog:
     
   # Release format.
   # Available values:
-  #   releases: Array of release objects. (Save as 'releases' in body.)
+  #   context: Context object passed into action as 'context' parameter.
+  #   releases: Array of release objects. (Same as 'releases' in body.)
   #   release: Release object. (Read about release object: https://docs.github.com/en/rest/reference/repos#get-a-release.)
   #   date: Date object created based on 'dateFormat' settings.
   release: |
@@ -28,7 +30,7 @@ changelog:
   empty: |
     - No release notes.
 
-  # Settings used to format publish date of issue.
+  # Settings used to format publish date of release.
   # (Read about possible options: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/DateTimeFormat.)
   dateFormat:
     locale: en
@@ -39,24 +41,25 @@ changelog:
 readme:
   # Readme format of package.
   # Available values:
-  #  package: Package object.
-  #  dependenciesFormatted: Formatted dependencies as text.
+  #   context: Context object passed into action as 'context' parameter.
+  #   package: Package object.
+  #   dependenciesFormatted: Formatted dependencies as text.
   body: |
     # {package.name}
 
     {package.displayName}
 
     ## Info
-
+    
     - **Version**: `{package.version}`
-
-    ### Description
-
-    {package.description}
 
     ### Dependencies
 
     {dependenciesFormatted}
+
+    ### Description
+
+    {package.description}
 
     ### Changelog
 
@@ -64,6 +67,7 @@ readme:
 
   # Dependency format of package dependencies.
   # Available values:
+  #   context: Context object passed into action as 'context' parameter.
   #   package: Package object.
   #   dependency: Dependency object.
   #     name: Name of dependency.
@@ -78,6 +82,7 @@ readme:
 notes:
   # Body format of release changelog.
   # Available values:
+  #   context: Context object passed into action as 'context' parameter.
   #   milestone: Milestone object. (Read about milestone object: https://docs.github.com/en/rest/reference/issues#get-a-milestone.)
   #   groups: Array of the group objects. (Read about group object below.)
   #   groupsFormatted: Formatted groups as text.
@@ -101,6 +106,7 @@ notes:
 
   # Group format of issues.
   # Available values:
+  #   context: Context object passed into action as 'context' parameter.
   #   milestone: Milestone object. (Same as milestone in body.)
   #   groups: Array of the group objects. (Same as groups in body.)
   #   group: Group object. (Read about group in body description.)
@@ -112,6 +118,7 @@ notes:
 
   # Issue format from group.
   # Available values:
+  #   context: Context object passed into action as 'context' parameter.
   #   milestone: Milestone object. (Same as 'milestone' in body.)
   #   groups: Array of the group objects. (Same as 'groups' in body.)
   #   group: Group object. (Read about 'group' in body description.)
@@ -147,3 +154,31 @@ notes:
   - name: Security
     state: all
     labels: Security
+
+# List of labels to add or update.
+# Each element has some properties. (Read about labels: https://docs.github.com/en/rest/reference/issues#update-a-label)
+#   name: The name of the label.
+#   description: A short description of the label.
+#   color: The hexadecimal color code for the label, without the leading #.
+labels:
+- name: Archived
+  description: An issue no longer relevant, but can be reopened.
+  color: fef2c0
+- name: Bug
+  description: Mentioned in changelog under the Fixed section.
+  color: f9d0c4
+- name: Change
+  description: Mentioned in changelog under the Changed section.
+  color: c5def5
+- name: Deprecation
+  description: Mentioned in changelog under the Deprecated section.
+  color: c5def5
+- name: Feature
+  description: Mentioned in changelog under the Added section.
+  color: c2e0c6
+- name: Remove
+  description: Mentioned in changelog under the Removed section.
+  color: f9d0c4
+- name: Security
+  description: Mentioned in changelog under the Security section.
+  color: d4c5f9
