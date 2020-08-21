@@ -1,21 +1,26 @@
+# List of labels to add or update.
+# Each element has some properties. (Read about labels: https://docs.github.com/en/rest/reference/issues#update-a-label)
+#   name: The name of the label.
+#   description: A short description of the label.
+#   color: The hexadecimal color code for the label, without the leading #.
 - name: Archived
   description: An issue no longer relevant, but can be reopened.
-  color: dddddd
+  color: fef2c0
 - name: Bug
   description: Mentioned in changelog under the Fixed section.
-  color: ffbbbb
+  color: f9d0c4
 - name: Change
   description: Mentioned in changelog under the Changed section.
-  color: bbbbff
+  color: c5def5
 - name: Deprecation
   description: Mentioned in changelog under the Deprecated section.
-  color: dddddd
+  color: c5def5
 - name: Feature
   description: Mentioned in changelog under the Added section.
-  color: bbffbb
+  color: c2e0c6
 - name: Remove
   description: Mentioned in changelog under the Removed section.
-  color: dddddd
+  color: f9d0c4
 - name: Security
   description: Mentioned in changelog under the Security section.
-  color: dddddd
+  color: d4c5f9
