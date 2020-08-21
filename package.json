@@ -1,6 +1,6 @@
 {
   "name": "labels-update",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "displayName": "Labels Update",
   "description": "Updates repository labels.",
   "main": "lib/main.js",
